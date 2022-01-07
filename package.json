@@ -1,0 +1,15 @@
+{
+  "name": "cisc-275",
+  "version": "1.0.0",
+  "description": "A bot which is good for this server and helps me upload videos to this channel",
+  "main": "botTutorial.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Max",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.5.0"
+  },
+  "devDependencies": {}
+}
