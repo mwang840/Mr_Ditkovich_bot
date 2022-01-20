@@ -1,8 +1,16 @@
-import tokens from './tokens';
+const tokens = require('tokens.js');
 
 const Discord = require('discord.js');
 //Just created a discord bot
-const client = new Discord.Client();
+const client = new Discord.Client({
+
+    'presence': {
+        'status': 'online',
+        'afk': false,
+        'activities': [{ 'name': 'Waiting for rent', 'type': 'PLAYING', 'url': 'https://www.youtube.com/channel/UCHCqPwHUde2P-idHPUTMoqA' }]
+    }
+
+});
 
 const prefix = '+';
 
@@ -21,5 +29,6 @@ client.on('message', message=>{
         message.channel.send('You have received a pong!');
     }
 });
+
 
 client.login(tokens.bot);

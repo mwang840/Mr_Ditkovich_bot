@@ -4,12 +4,13 @@
   "description": "A bot which is good for this server and helps me upload videos to this channel",
   "main": "botTutorial.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node botmain.js"
   },
   "author": "Max",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^13.5.0"
-  },
-  "devDependencies": {}
+    "discord.js": "^13.6.0",
+    "npm-check": "^5.9.2"
+  }
 }
