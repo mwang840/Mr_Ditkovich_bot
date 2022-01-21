@@ -1,8 +1,7 @@
-const tokens = require('./tokens.js');
-var fs = require('fs');
-const Discord = require('discord.js');
-//Just created a discord bot
-const client = new Discord.Client({
+import { tokens } from '../config/tokens';
+import { Client } from 'discord.js';
+
+const client = new Client({
 
     'presence': {
         'status': 'online',
