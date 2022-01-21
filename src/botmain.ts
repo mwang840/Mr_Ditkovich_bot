@@ -1,6 +1,8 @@
-import { WriteToAdminLog } from './server/log_admin_activity';
+import WriteToAdminLog from './server/log_admin_activity';
+import LogError from './server/log_error';
 import { tokens } from '../config/tokens';
 import { Client } from 'discord.js';
+
 
 const client = new Client({
 
@@ -51,10 +53,11 @@ client.on('message', async message => {
 
 
 client.login(tokens.bot)
-    .then(value => {
+    .then((value: string) => {
         const today: Date = new Date();
         WriteToAdminLog(`Logged in at ${today.toISOString()} with message : ${value}`);
     })
-    .catch(error => {
-        console.log(`login error : ${error}`);
+    .catch((error: string) => {
+        console.log('An error occured!');
+        LogError(error);
     });
