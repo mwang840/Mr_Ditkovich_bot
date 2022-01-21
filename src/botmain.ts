@@ -1,7 +1,7 @@
 import WriteToAdminLog from './server/log_admin_activity';
 import LogError from './server/log_error';
 import { tokens } from '../config/tokens';
-import { Client } from 'discord.js';
+import { Channel, Client } from 'discord.js';
 
 
 const client = new Client({
@@ -38,17 +38,17 @@ client.once('ready', () => {
 });
 
 client.on('message', async message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) {
-        return;
+    const today = new Date();
+    if (!message.content.startsWith(prefix) || !message.author.bot) {
+        await message.reply('You need to prefix your messages with + You owe me more rent now!')
+            .then(() => {
+                WriteToAdminLog(`Replied to message from ${message.author} at ${today.toISOString()}`);
+            })
+            .catch((error: string) => {
+                LogError(error);
+            });
     }
 
-    const args = message.content.slice(prefix.length).split(' ');
-    const command = args.shift().toLowerCase();
-
-
-    if (command === 'ping') {
-        await message.channel.send('You have received a pong!');
-    }
 });
 
 
