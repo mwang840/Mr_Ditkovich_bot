@@ -3,6 +3,6 @@ import * as path from 'path';
 
 export const WriteToAdminLog = (writing: string) => {
 
-    fs.writeFileSync(path.resolve(__dirname, '\\log\\admin'), writing);
+    fs.appendFileSync(path.resolve(__dirname, '../../../src', 'log', 'admin', 'admin_log.txt'), `---> ${writing}\n`);
 
 };
