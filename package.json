@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p .",
     "start": "npm run clean && npm run build && node ./dist/src/botmain.js",
-    "clean": "rmdir /s /q dist"
+    "clean": "rmdir /s /q dist",
+    "dev": "npm run clean && npm run build && nodemon ./dist/src/botmain.js"
   },
   "author": "Max",
   "license": "ISC",
