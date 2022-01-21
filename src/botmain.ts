@@ -2,6 +2,7 @@ import WriteToAdminLog from './server/log_admin_activity';
 import LogError from './server/log_error';
 import { tokens } from '../config/tokens';
 import { Channel, Client } from 'discord.js';
+import { processCommand } from './commands/processcommand';
 
 
 const client = new Client({
@@ -37,9 +38,9 @@ client.once('ready', () => {
     console.log('Mr Diktovitch is online and looking for rent!');
 });
 
-client.on('message', async message => {
+client.on('messageCreate', async message => {
     const today = new Date();
-    if (!message.content.startsWith(prefix) || !message.author.bot) {
+    if (!message.content.startsWith(prefix) && !message.author.bot) {
         await message.reply('You need to prefix your messages with + You owe me more rent now!')
             .then(() => {
                 WriteToAdminLog(`Replied to message from ${message.author} at ${today.toISOString()}`);
@@ -47,6 +48,8 @@ client.on('message', async message => {
             .catch((error: string) => {
                 LogError(error);
             });
+    } else {
+        await processCommand(message);
     }
 
 });
