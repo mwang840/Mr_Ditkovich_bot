@@ -39,11 +39,10 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async message => {
-    const today = new Date();
     if (!message.content.startsWith(prefix) && !message.author.bot) {
         await message.reply('You need to prefix your messages with + You owe me more rent now!')
             .then(() => {
-                WriteToAdminLog(`Replied to message from ${message.author} at ${today.toISOString()}`);
+                WriteToAdminLog(`Replied to message from ${message.author}}`);
             })
             .catch((error: string) => {
                 LogError(error);
@@ -57,8 +56,7 @@ client.on('messageCreate', async message => {
 
 client.login(tokens.bot)
     .then((value: string) => {
-        const today: Date = new Date();
-        WriteToAdminLog(`Logged in at ${today.toISOString()} with message : ${value}`);
+        WriteToAdminLog(`Logged in with message : ${value}`);
     })
     .catch((error: string) => {
         console.log('An error occured!');
