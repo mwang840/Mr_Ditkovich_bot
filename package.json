@@ -9,7 +9,7 @@
   "author": "Max",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^13.5.0"
-  },
-  "devDependencies": {}
+    "discord.js": "^11.6.4",
+    "random": "^3.0.6"
+  }
 }
