@@ -4,12 +4,39 @@
   "description": "A bot which is good for this server and helps me upload videos to this channel",
   "main": "botTutorial.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "start": "npm run clean && npm run build && node --trace-deprecation ./dist/src/botmain.js",
+    "clean": "rmdir /s /q dist",
+    "dev": "npm run clean && npm run build && nodemon ./dist/src/botmain.js"
   },
   "author": "Max",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.6.4",
-    "random": "^3.0.6"
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "crypto": "^1.0.1",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.6.0",
+    "express": "^4.17.2",
+    "fs": "^0.0.2",
+    "npm-check": "^5.9.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
+    "eslint-config-intense": "^0.7.8",
+    "eslint-plugin-eslint-comments": "~3.2.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-jest-formatting": "^3.1.0",
+    "eslint-plugin-no-secrets": "^0.8.9",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint-plugin-ramda": "~2.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "~7.0.0",
+    "typescript": "^4.5.5"
   }
 }

@@ -1,2 +1,5 @@
-/tokens.js
+/config
 /node_modules
+/dist
+
+/src/log/admin
