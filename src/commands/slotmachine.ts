@@ -1,12 +1,21 @@
-import { Message } from 'discord.js';
-import { randomInt } from 'crypto';
-import WriteToAdminLog from '../server/log_admin_activity';
 import LogError from '../server/log_error';
+import type { Message } from 'discord.js';
+import WriteToAdminLog from '../server/log_admin_activity';
+import { randomInt } from 'crypto';
 
-
-const SlotMachine = async (message: Message) => {
-
-    const result = `${randomInt(0, 10)}${randomInt(0, 10)}${randomInt(0, 10)}`;
+const slotMachine = async (message: Message): Promise<void> => {
+    const START_NUM = 0;
+    const END_NUM = 10;
+    const result = `${randomInt(
+        START_NUM,
+        END_NUM,
+    )}${randomInt(
+        START_NUM,
+        END_NUM,
+    )}${randomInt(
+        START_NUM,
+        END_NUM,
+    )}`;
     if (result === '777') {
         await message.reply(`JACKPOT! You spun ${result}`);
     } else {
@@ -21,4 +30,4 @@ const SlotMachine = async (message: Message) => {
 
 };
 
-export default SlotMachine;
+export default slotMachine;

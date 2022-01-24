@@ -1,13 +1,15 @@
-import { Message } from 'discord.js';
-import SlotMachine from './slotmachine';
-import RandomNumber from './randomnumber';
+import type { Message } from 'discord.js';
+import randomNumber from './randomnumber';
+import slotMachine from './slotmachine';
 
-export const processCommand = async (command: Message) => {
-
-    if (command.content.substring(1).toLowerCase() === 'slots') {
-        await SlotMachine(command);
-    } else if (command.content.substring(1) === 'randomnumber') {
-        await RandomNumber(command);
+const processCommand = async (command: Message): Promise<void> => {
+    const substringIndex = 1;
+    if (command.content.substring(substringIndex).toLowerCase() === 'slots') {
+        await slotMachine(command);
+    } else if (command.content.substring(substringIndex) === 'randomnumber') {
+        await randomNumber(command);
     }
 
 };
+
+export default processCommand;
