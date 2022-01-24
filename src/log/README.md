@@ -1,6 +1,6 @@
 # Logger Folder
 
-- Contains two folders (1 hidden)
+- Contains two folders (2 hidden)
   - admin
     - when bot is logged in
     - bot interactions with users
