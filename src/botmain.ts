@@ -71,5 +71,5 @@ client.login(tokens.bot2)
     })
     .catch((error: string) => {
         // Console Logging: console.log('An error occured!');
-        logError(error);
+        writeToAdminLog(error);
     });
