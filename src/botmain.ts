@@ -1,9 +1,9 @@
-import WriteToAdminLog from './server/log_admin_activity';
-import LogError from './server/log_error';
-import { tokens } from '../config/tokens';
-import { TextChannel, Client } from 'discord.js';
-import { processCommand } from './commands/processcommand';
-
+import { Client, type TextChannel } from 'discord.js';
+import logError from './server/log_error';
+import processCommand from './commands/processcommand';
+import tokens from '../config/tokens';
+import weekdaynumtostring from './lib/util/weekdaynumtostring';
+import writeToAdminLog from './server/log_admin_activity';
 
 const client = new Client({
 
@@ -25,7 +25,9 @@ const client = new Client({
         'GUILD_SCHEDULED_EVENTS',
     ],
     presence: {
-        activities: [{ name: 'Waiting for rent', type: 'PLAYING', url: 'https://www.youtube.com/channel/UCHCqPwHUde2P-idHPUTMoqA' }],
+        activities: [{ name: 'Waiting for rent',
+            type: 'PLAYING',
+            url: 'https://www.youtube.com/channel/UCHCqPwHUde2P-idHPUTMoqA' }],
         afk: false,
         status: 'online',
     },
@@ -34,35 +36,40 @@ const client = new Client({
 
 const prefix = '+';
 
-client.once('ready', async () => {
-    const generalChannel: TextChannel = client.channels.cache.get('934983047789543424') as TextChannel;
-    const today: Date = new Date();
-    const todayString = `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`;
-    await generalChannel.send(`Today is ${todayString} and Mr Diktovitch is online and looking for rent!`);
-    console.log('Mr Diktovitch is online and demanding rent!');
-});
+client.once(
+    'ready',
+    async () => {
+        const generalChannel: TextChannel = client.channels.cache.get('934983047789543424') as TextChannel;
+        const today: Date = new Date();
+        // ConsoleLogging : console.log('date right now = ', today.getDay());
+        await generalChannel.send(`Today is ${weekdaynumtostring(today.getDay())} and Mr Diktovitch is online and looking for rent!`);
+    },
+);
 
-client.on('messageCreate', async message => {
-    if (!message.content.startsWith(prefix) && !message.author.bot) {
-        await message.reply('You need to prefix your messages with + You owe me more rent now!')
-            .then(() => {
-                WriteToAdminLog(`Replied to message from ${message.author}}`);
-            })
-            .catch((error: string) => {
-                LogError(error);
-            });
-    } else {
-        await processCommand(message);
-    }
+client.on(
+    'messageCreate',
+    async message => {
+        if (!message.content.startsWith(prefix) && !message.author.bot) {
+            await message.reply('You need to prefix your messages with + You owe me more rent now!')
+                .then(() => {
+                    writeToAdminLog(`Replied to message from ${message.author.username} because invalid prefix supplied in their request,`);
+                })
+                .catch((error: string) => {
+                    logError(error);
+                });
+        } else {
+            await processCommand(message);
+        }
 
-});
+    },
+);
 
 
 client.login(tokens.bot2)
     .then((value: string) => {
-        WriteToAdminLog(`Logged in with message : ${value}`);
+        writeToAdminLog(`Logged in with token : ${value}`);
     })
     .catch((error: string) => {
-        console.log('An error occured!');
-        LogError(error);
+        // Console Logging: console.log('An error occured!');
+        logError(error);
     });
