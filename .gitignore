@@ -3,3 +3,4 @@
 /dist
 
 /src/log/admin
+/src/log/error
