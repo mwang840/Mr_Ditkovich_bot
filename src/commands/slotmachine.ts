@@ -1,7 +1,7 @@
-import LogError from '../server/log_error';
 import type { Message } from 'discord.js';
-import WriteToAdminLog from '../server/log_admin_activity';
+import logError from '../server/log_error';
 import { randomInt } from 'crypto';
+import writeToAdminLog from '../server/log_admin_activity';
 
 const slotMachine = async (message: Message): Promise<void> => {
     const START_NUM = 0;
@@ -21,10 +21,10 @@ const slotMachine = async (message: Message): Promise<void> => {
     } else {
         await message.reply(`You spun ${result}`)
             .then(() => {
-                WriteToAdminLog('Executed slot machine');
+                writeToAdminLog('Executed slot machine');
             })
             .catch((error: string) => {
-                LogError(error);
+                logError(error);
             });
     }
 

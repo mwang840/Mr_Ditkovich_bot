@@ -1,9 +1,9 @@
 import { Client, type TextChannel } from 'discord.js';
+import logError from './server/log_error';
 import processCommand from './commands/processcommand';
-import { tokens} from '../config/tokens';
+import tokens from '../config/tokens';
 import weekdaynumtostring from './lib/util/weekdaynumtostring';
 import writeToAdminLog from './server/log_admin_activity';
-import logError from './server/log_error';
 
 const client = new Client({
 
