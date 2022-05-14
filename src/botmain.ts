@@ -4,6 +4,7 @@ import processCommand from './commands/processcommand';
 import tokens from '../config/tokens';
 import weekdaynumtostring from './lib/util/weekdaynumtostring';
 import writeToAdminLog from './server/log_admin_activity';
+
 const client = new Client({
     intents: [
         'GUILDS',
