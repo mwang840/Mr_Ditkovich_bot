@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention -- disabled due to the warning about camelcasing*/
 const weekdaymapper: {
-
     '0': string;
     '1': string;
     '2': string;
@@ -7,7 +7,6 @@ const weekdaymapper: {
     '4': string;
     '5': string;
     '6': string;
-
 } = {
     '0': 'Sunday',
     '1': 'Monday',
