@@ -338,10 +338,6 @@
       ],
       "keyword-spacing": "error",
       "line-comment-position": "error",
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
       "lines-around-comment": "error",
       "lines-between-class-members": "error",
       "max-depth": [
