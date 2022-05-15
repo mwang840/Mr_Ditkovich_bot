@@ -1,9 +1,9 @@
-import { Message } from "discord.js";
-
-export interface Command {
+interface Command {
 
     author: string;
     channel: string;
     content: string;
 
 }
+
+export default Command;
