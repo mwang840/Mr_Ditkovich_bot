@@ -17,7 +17,7 @@
     "crypto": "^1.0.1",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.7.0",
-    "express": "^4.17.2",
+    "express": "^4.18.2",
     "fs": "^0.0.2",
     "npm-check": "^6.0.1",
     "path": "^0.12.7"
